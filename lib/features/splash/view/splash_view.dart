@@ -43,7 +43,7 @@ class _SplashViewState extends State<SplashView> with SplashViewState {
               TextButton(
                 onPressed: () {
                   timer?.cancel();
-                  goLoginPage();
+                  checkToken();
                 },
                 child: Text(
                   'Skip',

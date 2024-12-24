@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:product_catalog_project/core/app/theme/app_colors.dart';
 import 'package:product_catalog_project/core/common/main_button.dart';
 import 'package:product_catalog_project/core/common/main_textfield.dart';
+import 'package:product_catalog_project/core/providers/remember_me_provider.dart';
 import 'package:product_catalog_project/core/utils/text/text_style.dart';
 import 'package:product_catalog_project/features/auth/state/login_view_state.dart';
 
@@ -107,17 +108,22 @@ class _LoginViewState extends ConsumerState<LoginView> with LoginViewState {
                 children: [
                   Row(
                     children: [
-                      Checkbox(
-                        value: isChecked,
-                        activeColor: AppColors.categoryButttonColor,
-                        side: const BorderSide(
-                          width: 2,
-                          color: AppColors.categoryButttonColor,
-                        ),
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isChecked = value!;
-                          });
+                      Consumer(
+                        builder: (context, ref, child) {
+                          final rememberMe = ref.watch(rememberMeProvider);
+                          return Checkbox(
+                            value: rememberMe,
+                            activeColor: AppColors.categoryButttonColor,
+                            side: const BorderSide(
+                              width: 2,
+                              color: AppColors.categoryButttonColor,
+                            ),
+                            onChanged: (bool? value) {
+                              ref
+                                  .read(rememberMeProvider.notifier)
+                                  .toggleRememberMe(value);
+                            },
+                          );
                         },
                       ),
                       Text(
