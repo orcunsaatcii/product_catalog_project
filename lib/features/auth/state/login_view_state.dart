@@ -3,8 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:product_catalog_project/core/app/constants/app_constants.dart';
+import 'package:product_catalog_project/core/providers/remember_me_provider.dart';
 import 'package:product_catalog_project/core/repositories/auth_repository.dart';
 import 'package:product_catalog_project/features/auth/view/login_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 mixin LoginViewState on ConsumerState<LoginView> {
   bool isChecked = false;
@@ -40,6 +42,7 @@ mixin LoginViewState on ConsumerState<LoginView> {
   }
 
   Future<void> signIn(BuildContext context, WidgetRef ref) async {
+    final rememberMe = ref.read(rememberMeProvider);
     if (formKey.currentState!.validate()) {
       final email = emailController.text;
       final password = passwordController.text;
@@ -47,6 +50,11 @@ mixin LoginViewState on ConsumerState<LoginView> {
       final response = await _authRepository.signIn(email, password);
 
       if (response['status'] == 'success') {
+        if (rememberMe) {
+          final SharedPreferences sp = await SharedPreferences.getInstance();
+          await sp.setString('token', response['token']);
+        }
+
         // ignore: use_build_context_synchronously
         context.go('/home');
       } else {
