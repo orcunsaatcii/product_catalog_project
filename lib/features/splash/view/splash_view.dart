@@ -49,7 +49,7 @@ class _SplashViewState extends State<SplashView> with SplashViewState {
                   'Skip',
                   style: context.manrope(
                     fontWeight: FontWeight.w600,
-                    color: AppColors.categoryButttonColor,
+                    color: AppColors.categoryButtonColor,
                     fontSize: 16.sp,
                   ),
                 ),

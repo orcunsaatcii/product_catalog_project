@@ -113,10 +113,10 @@ class _LoginViewState extends ConsumerState<LoginView> with LoginViewState {
                           final rememberMe = ref.watch(rememberMeProvider);
                           return Checkbox(
                             value: rememberMe,
-                            activeColor: AppColors.categoryButttonColor,
+                            activeColor: AppColors.categoryButtonColor,
                             side: const BorderSide(
                               width: 2,
-                              color: AppColors.categoryButttonColor,
+                              color: AppColors.categoryButtonColor,
                             ),
                             onChanged: (bool? value) {
                               ref
@@ -130,7 +130,7 @@ class _LoginViewState extends ConsumerState<LoginView> with LoginViewState {
                         'Remember Me',
                         style: context.manrope(
                           fontWeight: FontWeight.bold,
-                          color: AppColors.categoryButttonColor,
+                          color: AppColors.categoryButtonColor,
                           fontSize: 12.sp,
                         ),
                       ),
@@ -141,7 +141,7 @@ class _LoginViewState extends ConsumerState<LoginView> with LoginViewState {
                       'Register',
                       style: context.manrope(
                         fontWeight: FontWeight.bold,
-                        color: AppColors.categoryButttonColor,
+                        color: AppColors.categoryButtonColor,
                         fontSize: 12.sp,
                       ),
                     ),

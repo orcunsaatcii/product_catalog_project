@@ -134,7 +134,7 @@ class _RegisterViewState extends ConsumerState<RegisterView>
                       'Login',
                       style: context.manrope(
                         fontWeight: FontWeight.bold,
-                        color: AppColors.categoryButttonColor,
+                        color: AppColors.categoryButtonColor,
                         fontSize: 12.sp,
                       ),
                     ),

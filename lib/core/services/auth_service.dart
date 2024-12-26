@@ -3,11 +3,10 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
+import 'package:product_catalog_project/core/app/constants/app_constants.dart';
 
 @injectable
 class AuthService {
-  final String constantUrl = 'https://assign-api.piton.com.tr/api/rest';
-
   Future<Map<String, dynamic>> signUp(
       String name, String email, String password) async {
     final url = Uri.parse('$constantUrl/register');
