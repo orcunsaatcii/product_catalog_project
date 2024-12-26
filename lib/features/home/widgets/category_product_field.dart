@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:product_catalog_project/core/app/theme/app_colors.dart';
 import 'package:product_catalog_project/core/models/category.dart';
 import 'package:product_catalog_project/core/models/product.dart';
+import 'package:product_catalog_project/core/providers/category_products_provider.dart';
 import 'package:product_catalog_project/core/utils/text/text_style.dart';
 import 'package:product_catalog_project/features/home/widgets/product_item.dart';
 
-class CategoryProductField extends StatelessWidget {
+class CategoryProductField extends ConsumerWidget {
   final Category category;
   final List<Product> products;
 
@@ -18,7 +20,7 @@ class CategoryProductField extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -36,12 +38,12 @@ class CategoryProductField extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
+                ref
+                    .read(categoryProductsProvider.notifier)
+                    .uploadProducts(products);
                 context.push(
                   '/allProducts',
-                  extra: {
-                    'products': products,
-                    'categoryName': category.name,
-                  },
+                  extra: category.name,
                 );
               },
               child: Text(

@@ -41,12 +41,9 @@ class RouteManager {
       GoRoute(
         path: Routes.allProducts.path,
         builder: (context, state) {
-          final extra = state.extra as Map<String, dynamic>;
-          final products = extra['products'] as List<Product>;
-          final categoryName = extra['categoryName'] as String;
+          final categoryName = state.extra as String;
 
           return AllProductsView(
-            products: products,
             categoryName: categoryName,
           );
         },
