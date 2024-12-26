@@ -10,7 +10,13 @@ enum Routes {
   register('/register'),
 
   // Home route
-  home('/home');
+  home('/home'),
+
+  // All prdoucts route
+  allProducts('/allProducts'),
+
+  // Product detail route
+  productDetail('/productDetail');
 
   const Routes(this.path);
 
