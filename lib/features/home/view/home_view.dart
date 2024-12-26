@@ -28,7 +28,10 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewState {
         backgroundColor: AppColors.white,
         bottom: const PreferredSize(
           preferredSize: Size(20, 20),
-          child: Divider(),
+          child: Divider(
+            color: AppColors.textFieldColor,
+            thickness: 2,
+          ),
         ),
         title: Image.asset(
           'assets/images/app_logo.png',
@@ -56,7 +59,12 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewState {
           children: [
             _buildCategoryButtonList(),
             SizedBox(height: 20.h),
-            const MainSeachbar(),
+            MainSeachbar(
+              controller: searchController,
+              onChanged: (p0) {
+                ref.read(productProvider.notifier).searchProduct(p0);
+              },
+            ),
             SizedBox(height: 30.h),
             Expanded(
               child: Consumer(
@@ -68,7 +76,17 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewState {
                     return const Center(child: CircularProgressIndicator());
                   }
 
-                  return _buildCategoryProducts(categories, products);
+                  return searchController.text.isEmpty
+                      ? _buildCategoryProducts(categories, products)
+                      : ListView.builder(
+                          itemCount: products.length,
+                          itemBuilder: (context, index) {
+                            return CategoryProductField(
+                              category: products[index].category!,
+                              products: products,
+                            );
+                          },
+                        );
                 },
               ),
             ),

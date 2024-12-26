@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:product_catalog_project/core/app/theme/app_colors.dart';
 import 'package:product_catalog_project/core/utils/text/text_style.dart';
 
-class MainSeachbar extends StatelessWidget {
-  const MainSeachbar({super.key});
+class MainSeachbar extends ConsumerWidget {
+  const MainSeachbar(
+      {super.key, required this.controller, required this.onChanged});
+
+  final TextEditingController controller;
+  final Function(String)? onChanged;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4),
@@ -24,10 +30,9 @@ class MainSeachbar extends StatelessWidget {
           Icons.search,
           color: AppColors.textColor.withOpacity(0.6),
         ),
-        suffix: Image.asset(
-          'assets/icons/filter.png',
-          fit: BoxFit.cover,
-          width: 20.w,
+        suffixIcon: Icon(
+          Icons.filter_alt,
+          color: AppColors.textColor.withOpacity(0.6),
         ),
         hintText: 'Search',
         hintStyle: context.manrope(
@@ -36,6 +41,7 @@ class MainSeachbar extends StatelessWidget {
           fontSize: 16.sp,
         ),
       ),
+      onChanged: onChanged,
     );
   }
 }
