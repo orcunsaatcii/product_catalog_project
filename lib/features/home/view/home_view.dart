@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:product_catalog_project/core/app/constants/app_constants.dart';
 import 'package:product_catalog_project/core/app/theme/app_colors.dart';
+import 'package:product_catalog_project/core/common/main_seachbar.dart';
 import 'package:product_catalog_project/core/models/category.dart';
 import 'package:product_catalog_project/core/models/product.dart';
 import 'package:product_catalog_project/core/providers/categories_provider.dart';
@@ -23,17 +24,40 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewState {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.white,
+        bottom: const PreferredSize(
+          preferredSize: Size(20, 20),
+          child: Divider(),
+        ),
+        title: Image.asset(
+          'assets/images/app_logo.png',
+          fit: BoxFit.cover,
+          width: 50.w,
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 20.w),
+            child: Text(
+              'Catalog',
+              style: context.manrope(
+                fontWeight: FontWeight.bold,
+                color: AppColors.textColor,
+                fontSize: 20.sp,
+              ),
+            ),
+          ),
+        ],
+      ),
+      backgroundColor: AppColors.white,
       body: Padding(
-        padding: EdgeInsets.only(top: 60.h, right: 20.w, left: 20.w),
+        padding: EdgeInsets.only(top: 20.h, right: 20.w, left: 20.w),
         child: Column(
           children: [
-            _buildHeader(context),
-            SizedBox(height: 20.h),
-            const Divider(),
             _buildCategoryButtonList(),
             SizedBox(height: 20.h),
-            const TextField(),
-            SizedBox(height: 20.h),
+            const MainSeachbar(),
+            SizedBox(height: 30.h),
             Expanded(
               child: Consumer(
                 builder: (context, ref, child) {
@@ -51,27 +75,6 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewState {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildHeader(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Image.asset(
-          'assets/images/app_logo.png',
-          fit: BoxFit.cover,
-          width: 50.w,
-        ),
-        Text(
-          'Catalog',
-          style: context.manrope(
-            fontWeight: FontWeight.bold,
-            color: AppColors.textColor,
-            fontSize: 20.sp,
-          ),
-        ),
-      ],
     );
   }
 

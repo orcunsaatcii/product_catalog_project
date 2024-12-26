@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:product_catalog_project/core/app/theme/app_colors.dart';
 import 'package:product_catalog_project/core/models/category.dart';
 import 'package:product_catalog_project/core/models/product.dart';
@@ -34,7 +35,15 @@ class CategoryProductField extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                context.push(
+                  '/allProducts',
+                  extra: {
+                    'products': products,
+                    'categoryName': category.name,
+                  },
+                );
+              },
               child: Text(
                 'View All',
                 style: context.manrope(

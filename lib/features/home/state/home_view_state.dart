@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:product_catalog_project/core/di/injectable.dart';
 import 'package:product_catalog_project/core/models/category.dart';
