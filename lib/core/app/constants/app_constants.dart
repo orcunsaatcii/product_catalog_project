@@ -30,3 +30,6 @@ extension ShowSnackBar on BuildContext {
     );
   }
 }
+
+List<String> categoryButtons = ['All', 'Classics', 'Horror', 'Romance'];
+const String constantUrl = 'https://assign-api.piton.com.tr/api/rest';
