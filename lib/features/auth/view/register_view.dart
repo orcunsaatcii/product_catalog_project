@@ -7,6 +7,7 @@ import 'package:product_catalog_project/core/common/main_button.dart';
 import 'package:product_catalog_project/core/common/main_textfield.dart';
 import 'package:product_catalog_project/core/utils/text/text_style.dart';
 import 'package:product_catalog_project/features/auth/state/register_view_state.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class RegisterView extends ConsumerStatefulWidget {
   const RegisterView({super.key});
@@ -21,13 +22,14 @@ class _RegisterViewState extends ConsumerState<RegisterView>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      body: Padding(
-        padding: EdgeInsets.only(
-          top: 60.h,
-          right: 20.w,
-          left: 20.w,
-        ),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 60.h,
+            bottom: 20.h,
+            right: 20.w,
+            left: 20.w,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -42,7 +44,7 @@ class _RegisterViewState extends ConsumerState<RegisterView>
                 height: 115.h,
               ),
               Text(
-                'Welcome',
+                AppLocalizations.of(context)!.welcome,
                 style: context.manrope(
                   fontWeight: FontWeight.w600,
                   color: AppColors.textColor.withOpacity(0.6),
@@ -53,7 +55,7 @@ class _RegisterViewState extends ConsumerState<RegisterView>
                 height: 7.h,
               ),
               Text(
-                'Register an account',
+                AppLocalizations.of(context)!.register_to,
                 style: context.manrope(
                   fontWeight: FontWeight.bold,
                   color: AppColors.textColor,
@@ -69,7 +71,7 @@ class _RegisterViewState extends ConsumerState<RegisterView>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Name',
+                      AppLocalizations.of(context)!.name,
                       style: context.manrope(
                         fontWeight: FontWeight.w600,
                         color: AppColors.textColor,
@@ -88,7 +90,7 @@ class _RegisterViewState extends ConsumerState<RegisterView>
                       height: 28.h,
                     ),
                     Text(
-                      'E-mail',
+                      AppLocalizations.of(context)!.email,
                       style: context.manrope(
                         fontWeight: FontWeight.w600,
                         color: AppColors.textColor,
@@ -107,7 +109,7 @@ class _RegisterViewState extends ConsumerState<RegisterView>
                       height: 28.h,
                     ),
                     Text(
-                      'Password',
+                      AppLocalizations.of(context)!.pass,
                       style: context.manrope(
                         fontWeight: FontWeight.w600,
                         color: AppColors.textColor,
@@ -131,7 +133,7 @@ class _RegisterViewState extends ConsumerState<RegisterView>
                 children: [
                   TextButton(
                     child: Text(
-                      'Login',
+                      AppLocalizations.of(context)!.login,
                       style: context.manrope(
                         fontWeight: FontWeight.bold,
                         color: AppColors.categoryButtonColor,
@@ -145,10 +147,10 @@ class _RegisterViewState extends ConsumerState<RegisterView>
                 ],
               ),
               SizedBox(
-                height: 50.h,
+                height: 20.h,
               ),
               MainButton(
-                text: 'Register',
+                text: AppLocalizations.of(context)!.register,
                 onTap: () => signUp(context, ref),
               ),
             ],

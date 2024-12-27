@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:product_catalog_project/core/app/constants/app_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @injectable
 class AuthService {
@@ -67,5 +68,24 @@ class AuthService {
     } catch (e) {
       return {'status': 'error', 'message': e.toString()};
     }
+  }
+
+  Future<String?> getToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    final remember = prefs.getBool('remember');
+    final expiry = prefs.getString('token_expiry');
+
+    if (token != null && expiry != null && remember != null) {
+      final expiryDate = DateTime.parse(expiry);
+      if (DateTime.now().isBefore(expiryDate)) {
+        return token;
+      } else {
+        await prefs.remove('token');
+        await prefs.remove('remember');
+        await prefs.remove('token_expiry');
+      }
+    }
+    return null;
   }
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:product_catalog_project/core/services/auth_service.dart';
 import 'package:product_catalog_project/features/splash/view/splash_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,16 +24,14 @@ mixin SplashViewState on State<SplashView> {
   }
 
   Future<void> checkToken() async {
-    final sp = await SharedPreferences.getInstance();
-    String? token = sp.getString('token');
-
-    if (token == null) {
+    final token = await AuthService().getToken();
+    if (token != null) {
       if (mounted) {
-        context.go('/login');
+        context.go('/home');
       }
     } else {
       if (mounted) {
-        context.go('/home');
+        context.go('/login');
       }
     }
   }

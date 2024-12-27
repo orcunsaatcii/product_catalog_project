@@ -7,11 +7,26 @@ import 'package:injectable/injectable.dart';
 import 'package:product_catalog_project/core/app/constants/app_constants.dart';
 import 'package:product_catalog_project/core/models/image.dart';
 import 'package:product_catalog_project/core/models/product.dart';
+import 'package:product_catalog_project/core/utils/cache/cache_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @singleton
 class ProductsService {
   Future<List<Product>> fetchAllProducts() async {
+    // const cacheKey = 'all_products_cache';
+
+    // // Cache kontrolü
+    // final cachedData = await CacheHelper.getCache(cacheKey);
+
+    // if (cachedData != null) {
+    //   print('CACHEDEN ÇEKİLDİ');
+    //   final decodedData = json.decode(cachedData) as List<dynamic>;
+    //   return decodedData
+    //       .map((e) => Product.fromJson(e, Category.fromJson(e['categoryId']),
+    //           Image.fromJson(e['imageId'])))
+    //       .toList();
+    // }
+
     final url = Uri.parse('$constantUrl/categories');
     final response = await http.get(url);
 
@@ -34,6 +49,8 @@ class ProductsService {
       // Nested list'i düz bir listeye dönüştür
       final List<Product> products = nestedProducts.expand((e) => e).toList();
 
+      //await CacheHelper.saveCache(cacheKey, json.encode(products));
+
       return products;
     } else {
       throw Exception('Kategoriler alınamadı');
@@ -42,6 +59,18 @@ class ProductsService {
 
   Future<List<Product>> fetchProductsByCategoryId(
       Category category, int categoryId) async {
+    // final cacheKey = 'products_$categoryId';
+
+    // // Cache kontrolü
+    // final cachedData = await CacheHelper.getCache(cacheKey);
+    // if (cachedData != null) {
+    //   final decodedData = json.decode(cachedData) as List<dynamic>;
+    //   return decodedData
+    //       .map((e) =>
+    //           Product.fromJson(e, category, Image.fromJson(e['imageId'])))
+    //       .toList();
+    // }
+
     List<Product> products = [];
     final SharedPreferences sp = await SharedPreferences.getInstance();
     final token = sp.getString('token');
@@ -71,6 +100,8 @@ class ProductsService {
         }
       }
 
+      //await CacheHelper.saveCache(cacheKey, json.encode(products));
+
       return products;
     } else {
       throw Exception('Ürünler alınamadı');
@@ -78,6 +109,16 @@ class ProductsService {
   }
 
   Future<List<Image>> uploadProductCoverImage(String fileName) async {
+    // const cacheKeyPrefix = 'cover_image_cache_';
+    // final cacheKey = '$cacheKeyPrefix$fileName';
+
+    // // Cache kontrolü
+    // final cachedData = await CacheHelper.getCache(cacheKey);
+    // if (cachedData != null) {
+    //   final decodedData = json.decode(cachedData) as List<dynamic>;
+    //   return decodedData.map((e) => Image.fromJson(e)).toList();
+    // }
+
     final url = Uri.parse('$constantUrl/cover_image');
     final response = await http.post(
       url,
@@ -90,6 +131,8 @@ class ProductsService {
       final dynamic imageData = data['action_product_image'];
 
       if (imageData != null) {
+        // await CacheHelper.saveCache(cacheKey, json.encode([imageData]));
+
         return [Image.fromJson(imageData)];
       } else {
         throw Exception('Kapak resmi bulunamadı');

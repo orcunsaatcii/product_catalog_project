@@ -8,6 +8,7 @@ import 'package:product_catalog_project/core/common/main_textfield.dart';
 import 'package:product_catalog_project/core/providers/remember_me_provider.dart';
 import 'package:product_catalog_project/core/utils/text/text_style.dart';
 import 'package:product_catalog_project/features/auth/state/login_view_state.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class LoginView extends ConsumerStatefulWidget {
   const LoginView({super.key});
@@ -21,9 +22,10 @@ class _LoginViewState extends ConsumerState<LoginView> with LoginViewState {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      body: Padding(
-        padding: EdgeInsets.only(top: 60.h, right: 20.w, left: 20.w),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding:
+              EdgeInsets.only(top: 60.h, bottom: 20.h, right: 20.w, left: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -38,7 +40,7 @@ class _LoginViewState extends ConsumerState<LoginView> with LoginViewState {
                 height: 115.h,
               ),
               Text(
-                'Welcome back!',
+                AppLocalizations.of(context)!.welcome_back,
                 style: context.manrope(
                   fontWeight: FontWeight.w600,
                   color: AppColors.textColor.withOpacity(0.6),
@@ -49,7 +51,7 @@ class _LoginViewState extends ConsumerState<LoginView> with LoginViewState {
                 height: 7.h,
               ),
               Text(
-                'Login to your account',
+                AppLocalizations.of(context)!.login_to,
                 style: context.manrope(
                   fontWeight: FontWeight.bold,
                   color: AppColors.textColor,
@@ -65,7 +67,7 @@ class _LoginViewState extends ConsumerState<LoginView> with LoginViewState {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'E-mail',
+                      AppLocalizations.of(context)!.email,
                       style: context.manrope(
                         fontWeight: FontWeight.w600,
                         color: AppColors.textColor,
@@ -84,7 +86,7 @@ class _LoginViewState extends ConsumerState<LoginView> with LoginViewState {
                       height: 28.h,
                     ),
                     Text(
-                      'Password',
+                      AppLocalizations.of(context)!.pass,
                       style: context.manrope(
                         fontWeight: FontWeight.w600,
                         color: AppColors.textColor,
@@ -127,7 +129,7 @@ class _LoginViewState extends ConsumerState<LoginView> with LoginViewState {
                         },
                       ),
                       Text(
-                        'Remember Me',
+                        AppLocalizations.of(context)!.remember,
                         style: context.manrope(
                           fontWeight: FontWeight.bold,
                           color: AppColors.categoryButtonColor,
@@ -138,7 +140,7 @@ class _LoginViewState extends ConsumerState<LoginView> with LoginViewState {
                   ),
                   TextButton(
                     child: Text(
-                      'Register',
+                      AppLocalizations.of(context)!.register,
                       style: context.manrope(
                         fontWeight: FontWeight.bold,
                         color: AppColors.categoryButtonColor,
@@ -152,10 +154,10 @@ class _LoginViewState extends ConsumerState<LoginView> with LoginViewState {
                 ],
               ),
               SizedBox(
-                height: 155.h,
+                height: 135.h,
               ),
               MainButton(
-                text: 'Login',
+                text: AppLocalizations.of(context)!.login,
                 onTap: () => signIn(context, ref),
               ),
             ],

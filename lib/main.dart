@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:product_catalog_project/core/app/routes/app_routers.dart';
 import 'package:product_catalog_project/core/di/injectable.dart';
+import 'package:product_catalog_project/l10n/l10n.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 void main() {
   configureDependencies();
@@ -24,6 +26,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp.router(
           routerConfig: RouteManager.routes,
           debugShowCheckedModeBanner: false,
+          supportedLocales: L10n.all,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
         );
       },
     );

@@ -45,7 +45,8 @@ class ProductListItem extends StatelessWidget {
                 ),
                 Flexible(
                   child: Text(
-                    product.name ?? '',
+                    product.name!.replaceFirst(
+                        product.name![0], product.name![0].toUpperCase()),
                     style: context.manrope(
                       fontWeight: FontWeight.w600,
                       color: AppColors.textColor,

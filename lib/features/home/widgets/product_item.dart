@@ -52,7 +52,8 @@ class ProductItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        product.name ?? '',
+                        product.name!.replaceFirst(
+                            product.name![0], product.name![0].toUpperCase()),
                         style: context.manrope(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w600,
