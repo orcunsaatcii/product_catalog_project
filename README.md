@@ -1,16 +1,15 @@
-# product_catalog_project
+https://github.com/user-attachments/assets/b6c25f42-5517-44a4-a05a-de7caf922391
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Product Catalog
 
-A few resources to get you started if this is your first Flutter project:
+#Aplication Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+-State Management(Riverpod)
+-Multi Language (tr-en)
+-24 hours cache (Auth token will be deleted after 24 hours)
+-Dependency Injection (DI)
+-Clean Code
+-RestFul API's
+-Auth
