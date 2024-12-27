@@ -61,39 +61,64 @@ class ProductDetailView extends StatelessWidget {
 
   Widget _buildProductImageAndDetails(BuildContext context) {
     return Center(
-      child: Column(
+      child: Stack(
         children: [
-          Hero(
-            tag: product.id.toString(),
-            child: Image.network(
-              product.image?.url ?? '',
-              width: 150.w,
-              height: 225.h,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Icon(
-                Icons.broken_image,
-                size: 100.h,
+          SizedBox(
+            width: double.infinity,
+            child: Column(
+              children: [
+                Hero(
+                  tag: product.id.toString(),
+                  child: Image.network(
+                    product.image?.url ?? '',
+                    width: 150.w,
+                    height: 225.h,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Icon(
+                      Icons.broken_image,
+                      size: 100.h,
+                      color: AppColors.textFieldColor,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  product.name!.replaceFirst(
+                      product.name![0], product.name![0].toUpperCase()),
+                  style: context.manrope(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.textColor,
+                  ),
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  product.author ?? '',
+                  style: context.manrope(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.textColor.withOpacity(0.6),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            right: 0,
+            child: Container(
+              decoration: BoxDecoration(
                 color: AppColors.textFieldColor,
+                borderRadius: BorderRadius.circular(50),
               ),
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Text(
-            product.name!
-                .replaceFirst(product.name![0], product.name![0].toUpperCase()),
-            style: context.manrope(
-              fontSize: 20.sp,
-              fontWeight: FontWeight.bold,
-              color: AppColors.textColor,
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Text(
-            product.author ?? '',
-            style: context.manrope(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.w600,
-              color: AppColors.textColor.withOpacity(0.6),
+              child: Center(
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.favorite_border,
+                    color: AppColors.categoryButtonColor,
+                  ),
+                ),
+              ),
             ),
           ),
         ],
