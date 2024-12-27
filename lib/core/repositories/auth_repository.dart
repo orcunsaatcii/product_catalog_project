@@ -19,8 +19,6 @@ class AuthRepository {
     final Map<String, dynamic> response =
         await _authService.signIn(email, password);
 
-    print(response['token']);
-
     return response;
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:product_catalog_project/core/app/theme/app_colors.dart';
 import 'package:product_catalog_project/core/models/product.dart';
 import 'package:product_catalog_project/core/utils/text/text_style.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class ProductDetailView extends StatelessWidget {
   const ProductDetailView({super.key, required this.product});
@@ -21,7 +22,7 @@ class ProductDetailView extends StatelessWidget {
           children: [
             _buildProductImageAndDetails(context),
             SizedBox(height: 42.h),
-            _buildSectionTitle(context, 'Summary'),
+            _buildSectionTitle(context, AppLocalizations.of(context)!.summary),
             SizedBox(height: 10.h),
             _buildProductDescription(context),
             SizedBox(height: 30.h),
@@ -46,7 +47,7 @@ class ProductDetailView extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(right: 20.w),
           child: Text(
-            'Book Details',
+            AppLocalizations.of(context)!.book_details,
             style: context.manrope(
               fontSize: 20.sp,
               fontWeight: FontWeight.bold,
@@ -78,7 +79,8 @@ class ProductDetailView extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
           Text(
-            product.name ?? '',
+            product.name!
+                .replaceFirst(product.name![0], product.name![0].toUpperCase()),
             style: context.manrope(
               fontSize: 20.sp,
               fontWeight: FontWeight.bold,
@@ -144,7 +146,7 @@ class ProductDetailView extends StatelessWidget {
               ),
             ),
             Text(
-              'Buy Now',
+              AppLocalizations.of(context)!.buy,
               style: context.manrope(
                 fontSize: 16.sp,
                 fontWeight: FontWeight.bold,

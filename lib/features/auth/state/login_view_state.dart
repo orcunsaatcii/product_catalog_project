@@ -48,13 +48,15 @@ mixin LoginViewState on ConsumerState<LoginView> {
       final password = passwordController.text;
 
       final response = await _authRepository.signIn(email, password);
+      final SharedPreferences sp = await SharedPreferences.getInstance();
 
       if (response['status'] == 'success') {
+        await sp.setString('token', response['token']);
         if (rememberMe) {
-          final SharedPreferences sp = await SharedPreferences.getInstance();
-          await sp.setString('token', response['token']);
+          await sp.setString('token_expiry',
+              DateTime.now().add(const Duration(hours: 24)).toIso8601String());
+          await sp.setBool('remember', true);
         }
-
         // ignore: use_build_context_synchronously
         context.go('/home');
       } else {

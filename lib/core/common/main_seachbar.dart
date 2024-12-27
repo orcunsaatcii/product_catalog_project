@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:product_catalog_project/core/app/theme/app_colors.dart';
 import 'package:product_catalog_project/core/utils/text/text_style.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class MainSeachbar extends ConsumerWidget {
   const MainSeachbar(
@@ -34,7 +35,7 @@ class MainSeachbar extends ConsumerWidget {
           Icons.filter_alt,
           color: AppColors.textColor.withOpacity(0.6),
         ),
-        hintText: 'Search',
+        hintText: AppLocalizations.of(context)!.search,
         hintStyle: context.manrope(
           fontWeight: FontWeight.w400,
           color: AppColors.textColor.withOpacity(0.6),

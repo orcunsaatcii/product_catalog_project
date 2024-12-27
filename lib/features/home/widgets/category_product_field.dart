@@ -8,6 +8,7 @@ import 'package:product_catalog_project/core/models/product.dart';
 import 'package:product_catalog_project/core/providers/category_products_provider.dart';
 import 'package:product_catalog_project/core/utils/text/text_style.dart';
 import 'package:product_catalog_project/features/home/widgets/product_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class CategoryProductField extends ConsumerWidget {
   final Category category;
@@ -47,7 +48,7 @@ class CategoryProductField extends ConsumerWidget {
                 );
               },
               child: Text(
-                'View All',
+                AppLocalizations.of(context)!.view_all,
                 style: context.manrope(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.bold,

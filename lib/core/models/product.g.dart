@@ -38,4 +38,5 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'slug': instance.slug,
       'likesAggregate': instance.likesAggregate,
       'categoryId': instance.category,
+      'imageId': instance.image,
     };

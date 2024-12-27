@@ -12,6 +12,7 @@ import 'package:product_catalog_project/core/utils/text/text_style.dart';
 import 'package:product_catalog_project/features/home/state/home_view_state.dart';
 import 'package:product_catalog_project/features/home/widgets/category_button.dart';
 import 'package:product_catalog_project/features/home/widgets/category_product_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
@@ -42,7 +43,7 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewState {
           Padding(
             padding: EdgeInsets.only(right: 20.w),
             child: Text(
-              'Catalog',
+              AppLocalizations.of(context)!.catalog,
               style: context.manrope(
                 fontWeight: FontWeight.bold,
                 color: AppColors.textColor,

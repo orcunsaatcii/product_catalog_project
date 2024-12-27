@@ -4,6 +4,7 @@ import 'package:product_catalog_project/core/app/theme/app_colors.dart';
 import 'package:product_catalog_project/core/common/main_button.dart';
 import 'package:product_catalog_project/core/utils/text/text_style.dart';
 import 'package:product_catalog_project/features/splash/state/splash_view_state.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -31,7 +32,7 @@ class _SplashViewState extends State<SplashView> with SplashViewState {
                 height: 287.h,
               ),
               MainButton(
-                text: 'Login',
+                text: AppLocalizations.of(context)!.login,
                 onTap: () {
                   timer?.cancel();
                   goLoginPage();
@@ -46,7 +47,7 @@ class _SplashViewState extends State<SplashView> with SplashViewState {
                   checkToken();
                 },
                 child: Text(
-                  'Skip',
+                  AppLocalizations.of(context)!.skip,
                   style: context.manrope(
                     fontWeight: FontWeight.w600,
                     color: AppColors.categoryButtonColor,
